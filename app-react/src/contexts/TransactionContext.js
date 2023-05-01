@@ -15,7 +15,7 @@ export const TransactionsProvider = ({ children }) => {
 
   const fetchTransactions = async () => {
     try {
-      const response = await fetch("http://localhost:4000/transactions");
+      const response = await fetch("/transactions");
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
@@ -31,13 +31,13 @@ export const TransactionsProvider = ({ children }) => {
 
   const fetchAccounts = async () => {
     try {
-      const response = await fetch("http://localhost:4000/accounts");
+      const response = await fetch("/accounts");
       const data = await response.json();
 
       const promises = data.map(async (account) => {
         try {
           const response = await fetch(
-            `http://localhost:4000/accounts/${account.account_id}`
+            `/accounts/${account.account_id}`
           );
           const accountData = await response.json();
           return {
@@ -67,7 +67,7 @@ export const TransactionsProvider = ({ children }) => {
     try {
       if (currentAccount) {
         const res = await fetch(
-          `http://localhost4000/transactions?account_id=${currentAccount}`
+          `transactions?account_id=${currentAccount}`
         );
         setTransactionById(res.data);
       }
@@ -78,7 +78,7 @@ export const TransactionsProvider = ({ children }) => {
 
   const addTransaction = async (transaction) => {
     try {
-      const res = await fetch("http://localhost:4000/transactions", {
+      const res = await fetch("/transactions", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

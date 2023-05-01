@@ -8,11 +8,14 @@
     "start:backend": "cd app-express && npm run start",
     "start:frontend": "cd app-react &&  npm run start",
     "start": "npm run start:backend & npm run start:frontend",
+    "dev": "concurrently \"npm run start:backend\" \"npm run start:frontend\"",
     "test": "cypress run"
   },
   "devDependencies": {
     "@cypress/react": "^7.0.3",
-    "cypress": "^9.7.0"
+    "concurrently": "^8.0.1",
+    "cypress": "^9.7.0",
+    "nodemon": "^2.0.22"
   },
   "dependencies": {
     "cors": "^2.8.5",
