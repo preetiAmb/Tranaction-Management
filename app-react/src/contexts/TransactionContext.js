@@ -11,7 +11,7 @@ export const TransactionsProvider = ({ children }) => {
   const [balance, setBalance] = useState(0);
   const [errorMessage, setErrorMessage] = useState("");
   const [loading, setLoading] = useState(true);
-  const [test, setTest] = useState([]);
+  const [transactionsHistory, setTransactionHistory] = useState([]);
 
   const fetchTransactions = async () => {
     try {
@@ -101,8 +101,8 @@ export const TransactionsProvider = ({ children }) => {
 
       setTransactions(updatedTransactions);
       setCurrentAccount(data.account_id);
-      setTest([...test, transaction]);
-      localStorage.setItem("test", JSON.stringify(transaction));
+      setTransactionHistory([...transactionsHistory, transaction]);
+      localStorage.setItem("transactionsHistory", JSON.stringify(transaction));
       setBalance(data.amount);
     } catch (err) {
       setError(err.message);
@@ -134,7 +134,7 @@ export const TransactionsProvider = ({ children }) => {
         transactions,
         currentAccount,
         addTransaction,
-        test,
+        transactionsHistory,
         withdrawn,
         error,
       }}

@@ -2,9 +2,9 @@ import React, { useContext } from "react";
 import { TransactionsContext } from "../contexts/TransactionContext";
 
 const TransactionHistory = () => {
-  const { test } = useContext(TransactionsContext);
+  const { transactionsHistory } = useContext(TransactionsContext);
 
-  const storedTransaction = localStorage.getItem("test");
+  const storedTransaction = localStorage.getItem("transactionsHistory");
 
   const transactionObj = JSON.parse(storedTransaction) || [];
 
@@ -26,7 +26,7 @@ const TransactionHistory = () => {
           <span className="mx-2"> {transactionObj.account_id}</span>
         </div>
       ) : (
-        <p>No transactions available.</p>
+        <p>No transaction history available.</p>
       )}
     </>
   );
